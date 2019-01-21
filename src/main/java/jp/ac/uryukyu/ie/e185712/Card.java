@@ -5,9 +5,12 @@ import java.util.Collections;
 
 public class Card {
     String ka ;
+    int count = 0;
+    int sum = 0;
     String[] suit = {"♡","♤","♢","♧"};
     ArrayList<Integer> cards = new ArrayList<>();
     ArrayList<Integer> player_hand = new ArrayList<>() ;
+    ArrayList<Integer> points = new ArrayList<>();
 
     /**トランプを作る。♡:1~13,♤:14~26,♢:27~39,♧40~52とする
      * cardsに(1~52)の数字を入れる。
@@ -28,5 +31,31 @@ public class Card {
             player_hand.add(l-1,cards.get(l-1)%13+1) ;
             System.out.println(ka + player_hand.get(l-1));
         }
+    }
+    public void player_point(){
+        /**点数を求める。
+         *plaeyer_handの値をgetして、それをpointsに入れる.
+         * pointsの値をsumに足して点数を求める
+         */
+        for(int h = 0 ; h  < player_hand.size(); h++){
+            if(player_hand.get(count) ==  1){
+                points.add(count,11);
+                count++;
+            }
+            else if(player_hand.get(count) >= 10 ){
+                points.add(count,10);
+                count++;
+            }
+            else{
+                points.add(count,player_hand.get(count));
+                count ++;
+            }
+        }
+        count = 0;
+
+        for(int g  = 0 ; g <=player_hand.size()-1 ; g++) {
+            sum += points.get(g);
+        }
+        System.out.println("あなたの現在の点数は"+ sum + "です");
     }
 }
