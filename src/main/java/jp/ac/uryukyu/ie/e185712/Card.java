@@ -7,6 +7,7 @@ public class Card {
     String ka ;
     int count = 0;
     int sum = 0;
+    int num;
     String[] suit = {"♡","♤","♢","♧"};
     ArrayList<Integer> cards = new ArrayList<>();
     ArrayList<Integer> player_hand = new ArrayList<>() ;
@@ -57,5 +58,26 @@ public class Card {
             sum += points.get(g);
         }
         System.out.println("あなたの現在の点数は"+ sum + "です");
+    }
+
+    /**
+     * hitならトランプを追加し、standなら点数を表示し終了。
+     * @param input
+     */
+    public void game(String input){
+        if(input.equals("hit")) {
+            num = player_hand.size();
+            sum = 0;
+            for (int s = 0; s <= num ;s++) {
+                ka = suit[cards.get(s) / 13];
+                System.out.println(ka + (cards.get(s)%13+1));
+                if(num == s){
+                    player_hand.add(cards.get(s)%13+1);
+                }
+            }
+        }
+        else if (input.equals("stand")){
+            System.out.println("あなたの得点は" + sum + "です");
+        }
     }
 }
